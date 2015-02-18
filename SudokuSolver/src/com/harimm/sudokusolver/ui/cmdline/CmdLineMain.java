@@ -48,9 +48,10 @@ public class CmdLineMain {
 			} catch (Exception e) {
 				System.out.println("Exception has occurred. Try again!");
 			}
-		} while (flag);
+		} while (!flag);
 		
 		GridSet gridSet = new GridSet(order, rows);
+		gridSet.insertNumbersFromCommandLine();
 		
 		scn.close();
 	}
