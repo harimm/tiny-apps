@@ -16,8 +16,22 @@ public abstract class BaseGrid {
 	protected int getSubGridColumnStart(int column) {
 		return column - (column % cols);
 	}
-	
+
 	protected int getSubGridRowStart(int row) {
 		return row - (row % rows);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder gridString = new StringBuilder();
+
+		for (int i = 0; i < order; i++) {
+			for (int j = 0; j < order; j++) {
+				gridString.append(grid[i][j]).append(" ");
+			}
+			gridString.append("\n");
+		}
+
+		return gridString.toString();
 	}
 }

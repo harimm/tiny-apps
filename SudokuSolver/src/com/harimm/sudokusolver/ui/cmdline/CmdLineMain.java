@@ -49,10 +49,16 @@ public class CmdLineMain {
 				System.out.println("Exception has occurred. Try again!");
 			}
 		} while (!flag);
-		
+
 		GridSet gridSet = new GridSet(order, rows);
+		System.out
+				.println("Enter the grid of numbers. Enter zero for blank cell.");
 		gridSet.insertNumbersFromCommandLine();
-		
+		if (gridSet.solvePuzzle()) {
+			System.out.println("\n\nSOLUTION\n");
+			System.out.println(gridSet.getProblemGrid().toString());
+		} else
+			System.out.println("Failed to solve puzzle!");
 		scn.close();
 	}
 }
