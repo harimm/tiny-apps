@@ -49,3 +49,59 @@ def validate_mbti_type(mbti_type):
     if (mbti_type[3] not in TACTICS):
         return False
     return True
+
+
+# One function should be Perceiving and the other Judging
+def validate_function_types(function_1, function_2):
+    if function_1[0] in PERCEIVING_FUNCTIONS and function_2[0] in JUDGING_FUNCTIONS:
+        return True
+    if function_1[0] in JUDGING_FUNCTIONS and function_2[0] in PERCEIVING_FUNCTIONS:
+        return True
+    return False
+
+
+def invert_focus(focus):
+    if focus == EXTRAVERTED_SUFFIX:
+        return INTROVERTED_SUFFIX
+    if focus == INTROVERTED_SUFFIX:
+        return EXTRAVERTED_SUFFIX
+    return None
+
+
+# Find opposite function under same tactics
+def find_opposite_function(function_symbol):
+    if function_symbol == THINKING_JUDGING:
+        return FEELING_JUDGING
+    if function_symbol == FEELING_JUDGING:
+        return THINKING_JUDGING
+    if function_symbol == INTUITIVE_PERCEIVING:
+        return SENSING_PERCEIVING
+    if function_symbol == SENSING_PERCEIVING:
+        return INTUITIVE_PERCEIVING
+    return None
+
+
+# Find mirror position ego/shadow
+def find_mirror_position(position):
+    return (position + 4) % 8
+
+
+# Find position of opposite function
+def find_opposite_position(position):
+    mod_value = position % 4
+    if mod_value == 0:
+        return position + 3
+    if mod_value == 1:
+        return position + 1
+    if mod_value == 2:
+        return position - 1
+    if mod_value == 3:
+        return position - 3
+
+
+def get_function_order_name(position):
+    if position in range(0, 4):
+        return EGO_FUNCTION_ORDER_NAMES[position]
+    if position in range(4, 8):
+        return SHADOW_FUNCTION_ORDER_NAMES[position - 4]
+    return None

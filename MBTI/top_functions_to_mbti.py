@@ -1,4 +1,5 @@
 from mbti_utils import *
+from print_utils import print_line_separator
 
 
 def validate_functions(dominant_function, secondary_function):
@@ -53,24 +54,4 @@ def print_mbti_type(dominant_function, secondary_function):
         print dominant_function + ' and ' + secondary_function + ' is not part of a valid cognitive function stack.'
     else:
         print 'MBTI Type: ' + mbti_type
-    print '------------------------------------------------------------'
-
-
-# Main
-print '------------------------------------------------------------'
-print_mbti_type('Ni', 'Te')
-print_mbti_type('Ti', 'Ne')
-print_mbti_type('Te', 'Ni')
-print_mbti_type('Ne', 'Ti')
-print_mbti_type('Ni', 'Fe')
-print_mbti_type('Fi', 'Ne')
-print_mbti_type('Fe', 'Ni')
-print_mbti_type('Ne', 'Fi')
-print_mbti_type('Si', 'Te')
-print_mbti_type('Si', 'Fe')
-print_mbti_type('Te', 'Si')
-print_mbti_type('Fe', 'Si')
-print_mbti_type('Ti', 'Se')
-print_mbti_type('Fi', 'Se')
-print_mbti_type('Se', 'Ti')
-print_mbti_type('Se', 'Fi')
+    print_line_separator()
