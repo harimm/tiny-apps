@@ -1,11 +1,8 @@
-FOCUS_SUFFIXES = {'e', 'i'}
-FOCUS = {'e': 'E', 'i': 'I'}
-PERCEIVING_FUNCTIONS = {'N', 'S'}
-JUDGING_FUNCTIONS = {'F', 'T'}
+from mbti_utils import *
 
 
 def validate_functions(dominant_function, secondary_function):
-    if not (validate_function_type_and_length(dominant_function) and validate_function_type_and_length(
+    if not (validate_function(dominant_function) and validate_function(
             secondary_function)):
         return False
     # One of the functions should be extroverted and the other introverted
@@ -18,16 +15,12 @@ def validate_functions(dominant_function, secondary_function):
     return has_both_focus and has_judging_function and has_perceiving_function
 
 
-def validate_function_type_and_length(function_str):
-    return type(function_str) == str and len(function_str) == 2
-
-
 def get_mbti_type(dominant_function, secondary_function):
     if validate_functions(dominant_function, secondary_function):
         # Focus of dominant function determines if MBTI type's focus
-        focus = FOCUS[dominant_function[1]]
+        focus = FOCUS_SUFFIX_DICT[dominant_function[1]]
         extraverted_function, introverted_function = None, None
-        isExtraverted = focus == 'E'
+        isExtraverted = focus == EXTRAVERTED_FOCUS
         if isExtraverted:
             # Dominant function is extraverted and Secondary function is intraverted
             extraverted_function = dominant_function[0]

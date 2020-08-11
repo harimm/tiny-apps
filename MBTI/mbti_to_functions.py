@@ -1,29 +1,4 @@
-FOCUS = {'E', 'I'}
-PERCEIVING_FUNCTIONS = {'N', 'S'}
-JUDGING_FUNCTIONS = {'F', 'T'}
-TACTICS = {'J', 'P'}
-
-FOCUS_DICT = {'e': 'Extraverted', 'i': 'Introverted'}
-FUNCTION_DICT = {'N': 'iNtuiting', 'S': 'Sensing', 'F': 'Feeling', 'T': 'Thinking'}
-
-EGO_FUNCTION_NAMES = ('Leading', 'Supporting', 'Relief', 'Aspirational')
-SHADOW_FUNCTION_NAMES = ('Opposing', 'Critical Parent', 'Deceiving', 'Devilish')
-
-
-# Check if value is valid MBTI type
-# Length should be equal to 4 and each letter should be valid
-def validate(mbti_type):
-    if (len(mbti_type) != 4):
-        return False
-    if (mbti_type[0] not in FOCUS):
-        return False
-    if (mbti_type[1] not in PERCEIVING_FUNCTIONS):
-        return False
-    if (mbti_type[2] not in JUDGING_FUNCTIONS):
-        return False
-    if (mbti_type[3] not in TACTICS):
-        return False
-    return True
+from mbti_utils import *
 
 
 # Returns a tuple of lists - first list is ego functions, second list is shadow functions
@@ -36,8 +11,8 @@ def get_function_stack(mbti_type):
     perceiving_functions_copy.remove(perceiving_function)
     secondary_judging_function = judging_functions_copy[0]
     secondary_perceiving_function = perceiving_functions_copy[0]
-    is_extraverted = mbti_type[0] == 'E'
-    is_judging = mbti_type[3] == 'J'
+    is_extraverted = mbti_type[0] == EXTRAVERTED_FOCUS
+    is_judging = mbti_type[3] == JUDGING_TACTICS
     f_1, f_2, f_3, f_4 = None, None, None, None
     if is_judging:
         # Primary Judging function is extraverted
@@ -65,7 +40,7 @@ def get_function_stack(mbti_type):
 
     # Default primary focus is extraverted and secondary focus is intraverted
     # If MBTI type has introverted focus, this is reversed
-    primary_focus, secondary_focus = 'e', 'i'
+    primary_focus, secondary_focus = EXTRAVERTED_SUFFIX, INTROVERTED_SUFFIX
     if not is_extraverted:
         primary_focus, secondary_focus = secondary_focus, primary_focus
 
@@ -84,7 +59,7 @@ def get_function_stack(mbti_type):
 
 def print_function_stack(mbti_type):
     print mbti_type
-    if (validate(mbti_type)):
+    if (validate_mbti_type(mbti_type)):
         function_stack = get_function_stack(mbti_type)
         print_function_stack_details(function_stack)
     else:
@@ -108,20 +83,20 @@ def print_function_stack_details(function_stack):
     print 'EGO FUNCTIONS'
     print_line_separator()
     for i in range(0, 4):
-        print EGO_FUNCTION_NAMES[i] + ': ' + get_function_detail(ego_functions[i])
+        print EGO_FUNCTION_ORDER_NAMES[i] + ': ' + get_function_detail(ego_functions[i])
     print_line_separator()
     print 'SHADOW FUNCTIONS'
     print_line_separator()
     for i in range(0, 4):
-        print SHADOW_FUNCTION_NAMES[i] + ': ' + get_function_detail(shadow_functions[i])
+        print SHADOW_FUNCTION_ORDER_NAMES[i] + ': ' + get_function_detail(shadow_functions[i])
 
 
 def get_function_detail(function_abbr):
     if type(function_abbr) != str or len(function_abbr) != 2:
         print function_abbr + ' is not a valid function!'
         return None
-    function_name = FUNCTION_DICT[function_abbr[0]]
-    focus = FOCUS_DICT[function_abbr[1]]
+    function_name = FUNCTION_NAME_DICT[function_abbr[0]]
+    focus = FOCUS_NAME_DICT[function_abbr[1]]
     if function_name is None or focus is None:
         print function_abbr + ' is not a valid function!'
         return None
