@@ -2,8 +2,8 @@ package dev.harimohan.app.tiny.sudokusolver.grid;
 
 public class CalcGrid extends BaseGrid {
 
-	private ProblemGrid problemGrid;
-	private int calcValue;
+	private final ProblemGrid problemGrid;
+	private final int calcValue;
 
 	public CalcGrid(int order, int rows, ProblemGrid problemGrid, int calcValue) {
 		super(order, rows);
@@ -108,9 +108,9 @@ public class CalcGrid extends BaseGrid {
 	private int checkBoxes() {
 		int solvedCells = 0;
 		int boxRowStart = 0;
-		int boxColStart = 0;
+		int boxColStart;
 		int boxRowEnd = rows;
-		int boxColEnd = cols;
+		int boxColEnd;
 
 		for (int i = 0; i < cols; i++) {
 			boxColStart = 0;

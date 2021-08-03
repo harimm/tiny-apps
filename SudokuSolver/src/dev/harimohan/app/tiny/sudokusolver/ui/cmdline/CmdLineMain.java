@@ -18,7 +18,6 @@ public class CmdLineMain {
 		boolean flag;
 		do {
 			System.out.println("How many numbers?(1-10)");
-			flag = true;
 
 			try {
 				order = scn.nextInt();

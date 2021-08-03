@@ -3,8 +3,8 @@ package dev.harimohan.app.tiny.sudokusolver.grid;
 import java.util.Scanner;
 
 public class GridSet {
-	private ProblemGrid problemGrid;
-	private CalcGrid[] calcGrids;
+	private final ProblemGrid problemGrid;
+	private final CalcGrid[] calcGrids;
 	int order;
 	int remainingCellCount;
 
@@ -20,8 +20,7 @@ public class GridSet {
 	}
 
 	public void insertNumbersFromCommandLine() {
-		Scanner scn = new Scanner(System.in);
-		try {
+		try (Scanner scn = new Scanner(System.in)) {
 			boolean isValid = true;
 			for (int i = 0; i < order && isValid; i++) {
 				for (int j = 0; j < order; j++) {
@@ -42,8 +41,6 @@ public class GridSet {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			scn.close();
 		}
 	}
 
