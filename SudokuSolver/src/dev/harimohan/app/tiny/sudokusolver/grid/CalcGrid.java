@@ -1,4 +1,4 @@
-package com.harimm.sudokusolver.grid;
+package dev.harimohan.app.tiny.sudokusolver.grid;
 
 public class CalcGrid extends BaseGrid {
 

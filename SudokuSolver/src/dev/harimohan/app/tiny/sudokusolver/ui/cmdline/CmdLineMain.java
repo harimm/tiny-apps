@@ -1,8 +1,8 @@
-package com.harimm.sudokusolver.ui.cmdline;
+package dev.harimohan.app.tiny.sudokusolver.ui.cmdline;
 
 import java.util.Scanner;
 
-import com.harimm.sudokusolver.grid.GridSet;
+import dev.harimohan.app.tiny.sudokusolver.grid.GridSet;
 
 /*
  * As a initial test, the app is run through command line. It accepts 2 inputs
